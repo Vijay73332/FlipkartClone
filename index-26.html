@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>API Calling</title>
+</head>
+<body>
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">albumId</th>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">url</th>
+            <th scope="col">thumbnailUrl</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+         
+         
+        </tbody>
+      </table>
+    <!-- //The Most Importent Topic Of WebDevelopment
+    client ----Json--Server
+    client ---Json---Server
+    JSON=JAVASCRIPT OBJECT NOTATION
+     API (Application Programing Interface)
+    Request Method
+    1.GET
+    2.POST
+    https://jsonplaceholder.typicode.com/posts
+     XML HttpRequest Class -->
+     <script>
+        class myClass{
+
+            getName(){
+
+                console.log("Byte Ror");
+            }
+           
+
+        }
+        let obj= new myClass();
+         obj.getName()
+         
+         function getPhoto(url,method,mycbf){
+            var xhttp = new XMLHttpRequest();
+         var ds=xhttp.open(method,url);
+         xhttp.send();
+         xhttp.onload=function(response){
+            // console.log(xhttp.responseText);
+            mycbf(xhttp.responseText)
+         }
+            
+
+         }
+         getPhoto('https://jsonplaceholder.typicode.com/photos','GET',function(response){
+            document.querySelector('.spinner-border').remove();
+             console.log(response)
+             response=JSON.parse(response) //json string to json object
+            var tbody=document.querySelector('.table > tbody')
+             response.forEach((currentValue,index,arr) => {
+                console.log(currentValue);
+                var tr=document.createElement('tr');
+                var td1=document.createElement('td');
+                td1.innerHTML=currentValue.albumId;
+                var td2=document.createElement('td');
+                td2.innerHTML=currentValue.id;
+                var td3=document.createElement('td');
+                td3.innerHTML=currentValue.title;
+                var td4=document.createElement('td');
+
+                td4.innerHTML=currentValue.url;
+                var td5=document.createElement('td');
+                var img=document.createElement('img');
+                img.setAttribute('src',currentValue.thumbnailUrl);
+                td5.appendChild(img);
+                
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tbody.appendChild(tr)
+                
+             });
+         })
+         
+     </script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
