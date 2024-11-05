@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsertBefore</title>
+</head>
+
+<body>
+    <h1>Students</h1>
+    <ul id="myStudents">
+        
+    </ul>
+    <button onclick="addNewStudent()">Add New Student</button>
+    <script>
+        function addNewStudent(){
+            var sn=prompt("Enter A Student Name");
+            
+            l=document.createElement('li');   
+            l.innerHTML=sn;
+            let xy=   document.getElementById("myStudents");
+         
+            xy.insertBefore(l,xy.childNodes[1])
+            
+        }
+        var l;
+     
+     
+        // var l; var is global variable
+        // insertBefore vs AppendChild
+        // ChildNode
+   
+    </script>
+</body>
+</html>
