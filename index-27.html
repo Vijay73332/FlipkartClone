@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>API-Calling-2</title>
+</head>
+<body>
+    <div class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Website </th>
+            <th scope="col">Company</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+        
+         
+        </tbody>
+      </table>
+    <script>
+        class MyClass{ //pascal case
+            //property
+
+            //constructor
+
+            //Method
+            sum(a,b){
+            return a+b
+            }
+            
+        }
+        //lets create the object from the MyClass
+        //lets object =new ClassName()
+        let myObj= new MyClass();
+        //how you Can Access the Method
+       let result= myObj.sum(10,20);
+       console.log(result);
+    </script>
+    <script>
+        function getUserData(object,mycbf){ //object and mycbf formal argument
+           
+            //create xhr object xmlHttpRequest class
+            var xhr = new XMLHttpRequest();
+            
+            xhr.open(object.method,object.url);
+            xhr.send();
+            xhr.onload=function(){
+                console.log(xhr);
+                
+                mycbf(xhr.responseText);
+               
+            }
+            
+        }
+        getUserData({url:'https://jsonplaceholder.typicode.com/users',method:"GET"},function(response){ //actual argument
+           console.log(typeof response)
+           response=JSON.parse(response)
+           console.log(typeof response)
+           var tr='';
+           response.forEach((currentElement,index,arr) => {
+            console.log(currentElement)
+            tr=tr+`<tr>
+      <th scope="row">`+currentElement.id+`</th>
+      <td>`+currentElement.name+`</td>
+      <td>`+currentElement.username+`</td>
+      <td>`+currentElement.email+`</td>
+      <td>`+currentElement.address+`</td>
+      <td>`+currentElement.phone+`</td>
+      <td>`+currentElement.website+`</td>
+      <td>`+currentElement.company+`</td>
+      
+    </tr>`
+           });
+         console.log(tr)
+         document.querySelector('table > tbody').innerHTML=tr;
+         document.querySelector('.spinner-border').remove();
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
